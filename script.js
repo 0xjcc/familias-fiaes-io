@@ -303,20 +303,24 @@ function fitNameSize() {
   subtitleDisplay.style.fontSize = Math.max(size * 0.3, 16) + "px";
 }
 
+function applyName(index) {
+  const familia = FAMILIAS[index];
+  nameDisplay.textContent = familia.name;
+  subtitleDisplay.textContent = familia.subtitle || "";
+
+  currentColorIndex = randomIndex(COLORS.length, currentColorIndex);
+  const color = COLORS[currentColorIndex];
+  document.body.style.backgroundColor = color.bg;
+  document.body.style.color = color.text;
+
+  fitNameSize();
+}
+
 function showName(index) {
   nameWrapper.classList.add("fading");
 
   setTimeout(() => {
-    const familia = FAMILIAS[index];
-    nameDisplay.textContent = familia.name;
-    subtitleDisplay.textContent = familia.subtitle || "";
-
-    currentColorIndex = randomIndex(COLORS.length, currentColorIndex);
-    const color = COLORS[currentColorIndex];
-    document.body.style.backgroundColor = color.bg;
-    document.body.style.color = color.text;
-
-    fitNameSize();
+    applyName(index);
     nameWrapper.classList.remove("fading");
   }, FADE_MS);
 }
@@ -335,7 +339,7 @@ function resetTimer() {
 
 function togglePause() {
   paused = !paused;
-  btnPause.textContent = paused ? "Retomar" : "Pausa";
+  btnPause.textContent = paused ? "\u25B6" : "\u23F8";
   if (paused) {
     clearInterval(timer);
   } else {
@@ -428,7 +432,8 @@ btnInfo.addEventListener("click", (e) => {
 btnInfoClose.addEventListener("click", () => { infoOverlay.hidden = true; });
 infoBackdrop.addEventListener("click", () => { infoOverlay.hidden = true; });
 
-// Init
+// Init — show first name instantly (no fade)
 buildList();
-showRandom();
+currentIndex = randomIndex(FAMILIAS.length, currentIndex);
+applyName(currentIndex);
 timer = setInterval(showRandom, CYCLE_MS);
