@@ -265,6 +265,8 @@ let currentColorIndex = -1;
 let timer = null;
 let paused = false;
 
+const intro = document.getElementById("intro");
+const btnStart = document.getElementById("btnStart");
 const nameDisplay = document.getElementById("nameDisplay");
 const subtitleDisplay = document.getElementById("subtitleDisplay");
 const nameWrapper = document.getElementById("nameWrapper");
@@ -276,6 +278,7 @@ const btnShowAll = document.getElementById("btnShowAll");
 const btnClose = document.getElementById("btnClose");
 const overlayBackdrop = document.getElementById("overlayBackdrop");
 const displayContainer = document.getElementById("display");
+const controls = document.getElementById("controls");
 
 function randomIndex(max, exclude) {
   if (max <= 1) return 0;
@@ -413,7 +416,16 @@ document.addEventListener("keydown", (e) => {
 
 window.addEventListener("resize", fitNameSize);
 
+function startApp() {
+  intro.hidden = true;
+  displayContainer.hidden = false;
+  controls.hidden = false;
+  document.body.style.overflow = "hidden";
+  showRandom();
+  timer = setInterval(showRandom, CYCLE_MS);
+}
+
+btnStart.addEventListener("click", startApp);
+
 // Init
 buildList();
-showRandom();
-timer = setInterval(showRandom, CYCLE_MS);
