@@ -200,15 +200,6 @@ body {
   opacity: 1;
 }
 
-@media (min-width: 768px) {
-  .overlay-header,
-  .info-body,
-  .names-list {
-    padding-left: 10vw;
-    padding-right: 10vw;
-  }
-}
-
 .overlay-header {
   display: flex;
   align-items: center;
@@ -279,4 +270,13 @@ body {
   font-size: 0.9rem;
   opacity: 0.6;
   margin-left: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .overlay-header,
+  .info-body,
+  .names-list {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
 }
