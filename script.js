@@ -436,6 +436,7 @@ btnInfo.addEventListener("click", (e) => {
 btnInfoClose.addEventListener("click", () => { hideOverlay(infoOverlay); });
 
 // Init — show first name instantly (no fade)
+document.getElementById("totalCount").textContent = FAMILIAS.length;
 buildList();
 currentIndex = randomIndex(FAMILIAS.length, currentIndex);
 applyName(currentIndex);
