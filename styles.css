@@ -217,6 +217,12 @@ body {
   text-transform: uppercase;
 }
 
+.header-count {
+  font-size: 0.65em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 .close-btn {
   font-size: 2rem;
   font-weight: 700;
