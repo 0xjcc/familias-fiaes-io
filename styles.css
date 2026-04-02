@@ -14,64 +14,66 @@ body {
   transition: background-color 0.6s ease;
 }
 
-/* Intro */
-.intro {
-  min-height: 100dvh;
+/* Info button */
+.info-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: italic;
+  cursor: pointer;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: #1a1a1a;
-  color: #e0e0e0;
+  transition: opacity 0.2s ease;
 }
 
-.intro[hidden] {
-  display: none;
+.info-btn:hover {
+  opacity: 0.7;
 }
 
-.intro-content {
-  max-width: 640px;
-  width: 100%;
-}
-
-.intro-content h1 {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 2rem;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.intro-text {
-  max-height: 60dvh;
+/* Info overlay body */
+.info-body {
+  padding: 1.5rem 2rem;
   overflow-y: auto;
 }
 
-.intro-text p {
-  font-size: 1rem;
+.info-body p {
+  font-size: 0.95rem;
   line-height: 1.7;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 400;
 }
 
-.intro-text em {
+.info-body em {
   font-style: italic;
-  color: #ffffff;
 }
 
-.intro-footnote {
-  margin-top: 1.5rem;
-  font-size: 0.85rem !important;
+.info-footnote {
+  margin-top: 1rem;
+  font-size: 0.8rem !important;
   opacity: 0.6;
 }
 
-.intro-btn {
-  margin-top: 2rem;
-  font-size: 1rem;
-  padding: 1rem 2.5rem;
-  color: #ffffff;
-  border-color: #ffffff;
+.info-credits {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-credits p {
+  font-size: 0.85rem !important;
+  margin-bottom: 0.25rem;
+  opacity: 0.7;
 }
 
 .display-container {
@@ -86,13 +88,6 @@ body {
   overflow: hidden;
 }
 
-.display-container[hidden] {
-  display: none;
-}
-
-.controls[hidden] {
-  display: none;
-}
 
 .name-wrapper {
   text-align: center;

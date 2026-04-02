@@ -265,8 +265,10 @@ let currentColorIndex = -1;
 let timer = null;
 let paused = false;
 
-const intro = document.getElementById("intro");
-const btnStart = document.getElementById("btnStart");
+const btnInfo = document.getElementById("btnInfo");
+const infoOverlay = document.getElementById("infoOverlay");
+const infoBackdrop = document.getElementById("infoBackdrop");
+const btnInfoClose = document.getElementById("btnInfoClose");
 const nameDisplay = document.getElementById("nameDisplay");
 const subtitleDisplay = document.getElementById("subtitleDisplay");
 const nameWrapper = document.getElementById("nameWrapper");
@@ -278,7 +280,6 @@ const btnShowAll = document.getElementById("btnShowAll");
 const btnClose = document.getElementById("btnClose");
 const overlayBackdrop = document.getElementById("overlayBackdrop");
 const displayContainer = document.getElementById("display");
-const controls = document.getElementById("controls");
 
 function randomIndex(max, exclude) {
   if (max <= 1) return 0;
@@ -403,7 +404,9 @@ displayContainer.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !overlay.hidden) {
+  if (e.key === "Escape" && !infoOverlay.hidden) {
+    infoOverlay.hidden = true;
+  } else if (e.key === "Escape" && !overlay.hidden) {
     closeOverlay();
   } else if (e.key === "ArrowRight" || e.key === " ") {
     if (overlay.hidden) {
@@ -416,16 +419,16 @@ document.addEventListener("keydown", (e) => {
 
 window.addEventListener("resize", fitNameSize);
 
-function startApp() {
-  intro.hidden = true;
-  displayContainer.hidden = false;
-  controls.hidden = false;
-  document.body.style.overflow = "hidden";
-  showRandom();
-  timer = setInterval(showRandom, CYCLE_MS);
-}
+// Info overlay
+btnInfo.addEventListener("click", (e) => {
+  e.stopPropagation();
+  infoOverlay.hidden = false;
+});
 
-btnStart.addEventListener("click", startApp);
+btnInfoClose.addEventListener("click", () => { infoOverlay.hidden = true; });
+infoBackdrop.addEventListener("click", () => { infoOverlay.hidden = true; });
 
 // Init
 buildList();
+showRandom();
+timer = setInterval(showRandom, CYCLE_MS);
