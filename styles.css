@@ -23,7 +23,7 @@ body {
 
 .info-body p {
   font-size: 1.05rem;
-  line-height: 1.8;
+  line-height: 1.6;
   margin-bottom: 1rem;
   font-weight: 400;
 }
@@ -164,6 +164,15 @@ body {
 
 .overlay.visible {
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .overlay-header,
+  .info-body,
+  .names-list {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
 }
 
 .overlay-header {

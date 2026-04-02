@@ -346,6 +346,7 @@ function togglePause() {
 }
 
 function showOverlay(el) {
+  clearInterval(timer);
   el.hidden = false;
   requestAnimationFrame(() => {
     requestAnimationFrame(() => { el.classList.add("visible"); });
@@ -354,14 +355,16 @@ function showOverlay(el) {
 
 function hideOverlay(el) {
   el.classList.remove("visible");
-  el.addEventListener("transitionend", () => { el.hidden = true; }, { once: true });
+  el.addEventListener("transitionend", () => {
+    el.hidden = true;
+    if (!paused) resetTimer();
+  }, { once: true });
 }
 
 function jumpToName(index) {
   currentIndex = index;
   showName(index);
   hideOverlay(overlay);
-  resetTimer();
 }
 
 function buildList() {
