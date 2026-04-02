@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Famílias de Fiaes | fiaes.io</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="display-container" id="display">
+    <div class="name-wrapper" id="nameWrapper">
+      <div class="name-display" id="nameDisplay"></div>
+      <div class="subtitle-display" id="subtitleDisplay"></div>
+    </div>
+  </main>
+
+  <nav class="controls" id="controls">
+    <button id="btnNext" class="control-btn" aria-label="Próximo nome">Próximo</button>
+    <button id="btnPause" class="control-btn" aria-label="Pausar ciclo automático">Pausa</button>
+    <button id="btnShowAll" class="control-btn" aria-label="Ver todas as famílias">Ver Todas</button>
+  </nav>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="overlay-backdrop" id="overlayBackdrop"></div>
+    <div class="overlay-content">
+      <div class="overlay-header">
+        <h2>Todas as Famílias</h2>
+        <button id="btnClose" class="close-btn" aria-label="Fechar lista">&times;</button>
+      </div>
+      <ul class="names-list" id="namesList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

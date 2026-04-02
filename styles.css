@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.6s ease;
+  overflow: hidden;
+}
+
+.display-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.name-wrapper {
+  text-align: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.name-wrapper.fading {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.name-display {
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.subtitle-display {
+  font-size: clamp(1rem, 4vw, 2rem);
+  font-weight: 400;
+  margin-top: 0.5em;
+  opacity: 0.8;
+}
+
+.subtitle-display:empty {
+  display: none;
+}
+
+/* Controls */
+.controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  z-index: 10;
+}
+
+.control-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  border: 2px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.control-btn:hover {
+  opacity: 0.7;
+}
+
+.control-btn:active {
+  opacity: 0.5;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay-content {
+  position: relative;
+  background: #1a1a1a;
+  color: #ffffff;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.overlay-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  opacity: 0.7;
+}
+
+.names-list {
+  list-style: none;
+  overflow-y: auto;
+  padding: 1rem 2rem;
+}
+
+.names-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.names-list li:hover {
+  opacity: 0.7;
+}
+
+.names-list .list-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.names-list .list-subtitle {
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  margin-left: 0.5rem;
+}
