@@ -267,7 +267,6 @@ let paused = false;
 
 const btnInfo = document.getElementById("btnInfo");
 const infoOverlay = document.getElementById("infoOverlay");
-const infoBackdrop = document.getElementById("infoBackdrop");
 const btnInfoClose = document.getElementById("btnInfoClose");
 const nameDisplay = document.getElementById("nameDisplay");
 const subtitleDisplay = document.getElementById("subtitleDisplay");
@@ -278,7 +277,6 @@ const btnNext = document.getElementById("btnNext");
 const btnPause = document.getElementById("btnPause");
 const btnShowAll = document.getElementById("btnShowAll");
 const btnClose = document.getElementById("btnClose");
-const overlayBackdrop = document.getElementById("overlayBackdrop");
 const displayContainer = document.getElementById("display");
 
 function randomIndex(max, exclude) {
@@ -347,18 +345,22 @@ function togglePause() {
   }
 }
 
-function openOverlay() {
-  overlay.hidden = false;
+function showOverlay(el) {
+  el.hidden = false;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { el.classList.add("visible"); });
+  });
 }
 
-function closeOverlay() {
-  overlay.hidden = true;
+function hideOverlay(el) {
+  el.classList.remove("visible");
+  el.addEventListener("transitionend", () => { el.hidden = true; }, { once: true });
 }
 
 function jumpToName(index) {
   currentIndex = index;
   showName(index);
-  closeOverlay();
+  hideOverlay(overlay);
   resetTimer();
 }
 
@@ -396,11 +398,10 @@ btnPause.addEventListener("click", (e) => {
 
 btnShowAll.addEventListener("click", (e) => {
   e.stopPropagation();
-  openOverlay();
+  showOverlay(overlay);
 });
 
-btnClose.addEventListener("click", closeOverlay);
-overlayBackdrop.addEventListener("click", closeOverlay);
+btnClose.addEventListener("click", () => hideOverlay(overlay));
 
 displayContainer.addEventListener("click", () => {
   showRandom();
@@ -409,11 +410,11 @@ displayContainer.addEventListener("click", () => {
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !infoOverlay.hidden) {
-    infoOverlay.hidden = true;
+    hideOverlay(infoOverlay);
   } else if (e.key === "Escape" && !overlay.hidden) {
-    closeOverlay();
+    hideOverlay(overlay);
   } else if (e.key === "ArrowRight" || e.key === " ") {
-    if (overlay.hidden) {
+    if (overlay.hidden && infoOverlay.hidden) {
       e.preventDefault();
       showRandom();
       resetTimer();
@@ -426,11 +427,10 @@ window.addEventListener("resize", fitNameSize);
 // Info overlay
 btnInfo.addEventListener("click", (e) => {
   e.stopPropagation();
-  infoOverlay.hidden = false;
+  showOverlay(infoOverlay);
 });
 
-btnInfoClose.addEventListener("click", () => { infoOverlay.hidden = true; });
-infoBackdrop.addEventListener("click", () => { infoOverlay.hidden = true; });
+btnInfoClose.addEventListener("click", () => { hideOverlay(infoOverlay); });
 
 // Init — show first name instantly (no fade)
 buildList();
