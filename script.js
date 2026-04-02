@@ -286,6 +286,19 @@ function randomIndex(max, exclude) {
   return idx;
 }
 
+function fitNameSize() {
+  const maxWidth = displayContainer.clientWidth - 64;
+  let size = Math.min(window.innerWidth * 0.14, 128);
+  nameDisplay.style.fontSize = size + "px";
+
+  while (nameDisplay.scrollWidth > maxWidth && size > 24) {
+    size -= 2;
+    nameDisplay.style.fontSize = size + "px";
+  }
+
+  subtitleDisplay.style.fontSize = Math.max(size * 0.3, 16) + "px";
+}
+
 function showName(index) {
   nameWrapper.classList.add("fading");
 
@@ -299,6 +312,7 @@ function showName(index) {
     document.body.style.backgroundColor = color.bg;
     document.body.style.color = color.text;
 
+    fitNameSize();
     nameWrapper.classList.remove("fading");
   }, FADE_MS);
 }
@@ -396,6 +410,8 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+
+window.addEventListener("resize", fitNameSize);
 
 // Init
 buildList();
