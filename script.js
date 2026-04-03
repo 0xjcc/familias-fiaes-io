@@ -310,7 +310,6 @@ function applyName(index) {
   const color = COLORS[currentColorIndex];
   document.body.style.backgroundColor = color.bg;
   document.body.style.color = color.text;
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", color.bg);
 
   fitNameSize();
 }
