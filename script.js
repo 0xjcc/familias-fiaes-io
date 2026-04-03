@@ -308,6 +308,7 @@ function applyName(index) {
 
   currentColorIndex = randomIndex(COLORS.length, currentColorIndex);
   const color = COLORS[currentColorIndex];
+  document.documentElement.style.backgroundColor = color.bg;
   document.body.style.backgroundColor = color.bg;
   document.body.style.color = color.text;
 
