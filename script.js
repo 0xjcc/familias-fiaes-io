@@ -287,10 +287,22 @@ function stripAccents(str) {
 function filterList() {
   const query = stripAccents(searchInput.value.toLowerCase());
   const items = namesList.children;
+  let lastSep = null;
+  let hasVisible = false;
+
   for (let i = 0; i < items.length; i++) {
-    const text = stripAccents(items[i].textContent.toLowerCase());
-    items[i].style.display = text.includes(query) ? "" : "none";
+    if (items[i].classList.contains("list-separator")) {
+      if (lastSep) lastSep.style.display = hasVisible ? "" : "none";
+      lastSep = items[i];
+      hasVisible = false;
+    } else {
+      const text = stripAccents(items[i].textContent.toLowerCase());
+      const match = text.includes(query);
+      items[i].style.display = match ? "" : "none";
+      if (match) hasVisible = true;
+    }
   }
+  if (lastSep) lastSep.style.display = hasVisible ? "" : "none";
 }
 
 function randomIndex(max, exclude) {
@@ -385,7 +397,17 @@ function jumpToName(index) {
 }
 
 function buildList() {
+  let currentLetter = "";
   FAMILIAS.forEach((familia, i) => {
+    const firstLetter = stripAccents(familia.name.charAt(0).toUpperCase());
+    if (firstLetter !== currentLetter) {
+      currentLetter = firstLetter;
+      const sep = document.createElement("li");
+      sep.className = "list-separator";
+      sep.textContent = currentLetter;
+      namesList.appendChild(sep);
+    }
+
     const li = document.createElement("li");
     const nameSpan = document.createElement("span");
     nameSpan.className = "list-name";

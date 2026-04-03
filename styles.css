@@ -315,6 +315,22 @@ body {
   opacity: 0.6;
 }
 
+.names-list .list-separator {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  padding: 1.5rem 0 0.25rem;
+  border-bottom: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+.names-list .list-separator:first-child {
+  padding-top: 0.5rem;
+}
+
 .names-list .list-name {
   font-weight: 700;
   font-size: 1.2rem;
