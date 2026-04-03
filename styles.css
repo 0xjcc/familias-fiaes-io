@@ -144,7 +144,7 @@ body {
   gap: 1rem;
   padding: 1.5rem;
   padding-top: 3rem;
-  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  padding-bottom: calc(max(1.5rem, env(safe-area-inset-bottom)) + 1.75rem);
   z-index: 10;
   background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.25));
 }
@@ -168,6 +168,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  text-decoration: none;
 }
 
 .control-btn:hover {
@@ -176,6 +177,31 @@ body {
 
 .control-btn:active {
   opacity: 0.5;
+}
+
+/* Contribute bar */
+.contribute-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.45;
+  padding: 0 1.5rem;
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 10;
+}
+
+.contribute-bar a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.contribute-bar a:hover {
+  opacity: 0.7;
 }
 
 /* Overlay */
@@ -276,6 +302,12 @@ body {
   font-size: 0.9rem;
   opacity: 0.6;
   margin-left: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .controls {
+    padding-bottom: calc(max(1.5rem, env(safe-area-inset-bottom)) + 2.75rem);
+  }
 }
 
 @media (min-width: 768px) {
