@@ -310,6 +310,7 @@ function applyName(index) {
   const color = COLORS[currentColorIndex];
   document.body.style.backgroundColor = color.bg;
   document.body.style.color = color.text;
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", color.bg);
 
   fitNameSize();
 }
@@ -337,7 +338,7 @@ function resetTimer() {
 
 function togglePause() {
   paused = !paused;
-  btnPause.textContent = paused ? "\u25B6" : "\u23F8";
+  btnPause.textContent = paused ? "\u25B6\uFE0E" : "\u23F8\uFE0E";
   if (paused) {
     clearInterval(timer);
   } else {
