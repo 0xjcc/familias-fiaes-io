@@ -278,6 +278,20 @@ const btnPause = document.getElementById("btnPause");
 const btnShowAll = document.getElementById("btnShowAll");
 const btnClose = document.getElementById("btnClose");
 const displayContainer = document.getElementById("display");
+const searchInput = document.getElementById("searchInput");
+
+function stripAccents(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function filterList() {
+  const query = stripAccents(searchInput.value.toLowerCase());
+  const items = namesList.children;
+  for (let i = 0; i < items.length; i++) {
+    const text = stripAccents(items[i].textContent.toLowerCase());
+    items[i].style.display = text.includes(query) ? "" : "none";
+  }
+}
 
 function randomIndex(max, exclude) {
   if (max <= 1) return 0;
@@ -365,6 +379,8 @@ function hideOverlay(el) {
 function jumpToName(index) {
   currentIndex = index;
   showName(index);
+  searchInput.value = "";
+  filterList();
   hideOverlay(overlay);
 }
 
@@ -405,7 +421,13 @@ btnShowAll.addEventListener("click", (e) => {
   showOverlay(overlay);
 });
 
-btnClose.addEventListener("click", () => hideOverlay(overlay));
+btnClose.addEventListener("click", () => {
+  searchInput.value = "";
+  filterList();
+  hideOverlay(overlay);
+});
+
+searchInput.addEventListener("input", filterList);
 
 displayContainer.addEventListener("click", () => {
   showRandom();
@@ -416,6 +438,8 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !infoOverlay.hidden) {
     hideOverlay(infoOverlay);
   } else if (e.key === "Escape" && !overlay.hidden) {
+    searchInput.value = "";
+    filterList();
     hideOverlay(overlay);
   } else if (e.key === "ArrowRight" || e.key === " ") {
     if (overlay.hidden && infoOverlay.hidden) {
