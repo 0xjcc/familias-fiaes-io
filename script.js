@@ -304,7 +304,7 @@ function fitNameSize() {
 function applyName(index) {
   const familia = FAMILIAS[index];
   nameDisplay.textContent = familia.name;
-  subtitleDisplay.textContent = familia.subtitle || "";
+  subtitleDisplay.textContent = familia.subtitle || "\u00A0";
 
   currentColorIndex = randomIndex(COLORS.length, currentColorIndex);
   const color = COLORS[currentColorIndex];
